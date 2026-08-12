@@ -5,7 +5,7 @@
 }
 
 :root {
-  --ui-scale: 0.56;
+  --ui-scale: 0.55;
   font-family: "Minecraft Seven", monospace;
 }
 
@@ -191,10 +191,10 @@ output {
   padding: 7px 12px;
   color: #fff;
   border-style: solid;
-  border-width: 8px 8px 12px;
+  border-width: 12px;
   border-image-source: var(--button-texture);
-  border-image-slice: 2 2 3 2 fill;
-  border-image-width: 8px 8px 12px 8px;
+  border-image-slice: 3 fill;
+  border-image-width: 12px;
   border-image-repeat: stretch;
   border-radius: 0;
   outline: 0;
@@ -284,10 +284,10 @@ output {
   padding: 9px 24px;
   color: #fff;
   border-style: solid;
-  border-width: 8px 8px 12px;
+  border-width: 12px;
   border-image-source: var(--button-texture);
-  border-image-slice: 2 2 3 2 fill;
-  border-image-width: 8px 8px 12px 8px;
+  border-image-slice: 3 fill;
+  border-image-width: 12px;
   border-image-repeat: stretch;
   border-radius: 0;
   outline: 0;
@@ -308,11 +308,11 @@ output {
 .minecraft-button::after {
   position: absolute;
   z-index: 0;
-  inset: -4px -4px -8px;
+  inset: -12px;
   background-image: url("./assets/button_noise.png");
   background-repeat: repeat;
-  background-position: center;
-  background-size: auto 100%;
+  background-position: 0 0;
+  background-size: 792px 72px;
   mix-blend-mode: hard-light;
   opacity: 1;
   pointer-events: none;
@@ -460,15 +460,17 @@ output {
   #generate,
   .minecraft-button {
     min-height: 60px;
-    border-width: 6px 6px 9px;
-    border-image-width: 6px 6px 9px 6px;
+    border-width: 9px;
+    border-image-width: 9px;
   }
 
   .option-button::after,
   .toggle-value::after,
   #generate::after,
   .minecraft-button::after {
-    inset: -3px -3px -6px;
+    inset: -9px;
+    background-position: 0 0;
+    background-size: 594px 54px;
   }
 
   .cycle-setting,
