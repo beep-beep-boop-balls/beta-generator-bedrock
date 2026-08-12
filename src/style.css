@@ -180,6 +180,9 @@ output {
 
 .option-button,
 .toggle-value {
+  --button-texture: url("./assets/button.png");
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex: 0 0 220px;
   min-height: 80px;
@@ -189,12 +192,13 @@ output {
   color: #fff;
   border-style: solid;
   border-width: 8px 8px 12px;
-  border-image-source: url("./assets/button.png");
+  border-image-source: var(--button-texture);
   border-image-slice: 2 2 3 2 fill;
   border-image-width: 8px 8px 12px 8px;
   border-image-repeat: stretch;
   border-radius: 0;
   outline: 0;
+  overflow: hidden;
   background-color: #747474;
   box-shadow: none;
   font-size: clamp(22px, 2.8vw, 32px);
@@ -206,9 +210,9 @@ output {
 
 .option-button:hover,
 .toggle:hover .toggle-value {
+  --button-texture: url("./assets/button_hovered.png");
   color: #ffff55;
   background-color: #7d85bd;
-  border-image-source: url("./assets/button_hovered.png");
   box-shadow: none;
   text-shadow: 3px 3px 0 #3f3f00;
 }
@@ -258,6 +262,8 @@ output {
 
 .toggle-value::before {
   content: "OFF";
+  position: relative;
+  z-index: 1;
 }
 
 .toggle input:checked + .toggle-value::before {
@@ -266,6 +272,9 @@ output {
 
 #generate,
 .minecraft-button {
+  --button-texture: url("./assets/button.png");
+  position: relative;
+  isolation: isolate;
   display: flex;
   width: 100%;
   min-height: 80px;
@@ -276,12 +285,13 @@ output {
   color: #fff;
   border-style: solid;
   border-width: 8px 8px 12px;
-  border-image-source: url("./assets/button.png");
+  border-image-source: var(--button-texture);
   border-image-slice: 2 2 3 2 fill;
   border-image-width: 8px 8px 12px 8px;
   border-image-repeat: stretch;
   border-radius: 0;
   outline: 0;
+  overflow: hidden;
   background-color: #747474;
   box-shadow: none;
   font-size: clamp(24px, 3vw, 32px);
@@ -292,11 +302,35 @@ output {
   cursor: pointer;
 }
 
+.option-button::after,
+.toggle-value::after,
+#generate::after,
+.minecraft-button::after {
+  position: absolute;
+  z-index: 0;
+  inset: -4px -4px -8px;
+  background-image: url("./assets/button_noise.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto 100%;
+  mix-blend-mode: hard-light;
+  opacity: 1;
+  pointer-events: none;
+  content: "";
+}
+
+.option-button > span,
+#generate > span,
+.minecraft-button > span {
+  position: relative;
+  z-index: 1;
+}
+
 #generate:hover:not(:disabled),
 .minecraft-button:hover {
+  --button-texture: url("./assets/button_hovered.png");
   color: #ffff55;
   background-color: #7d85bd;
-  border-image-source: url("./assets/button_hovered.png");
   box-shadow: none;
   text-shadow: 3px 3px 0 #3f3f00;
 }
@@ -307,9 +341,9 @@ output {
 }
 
 #generate:disabled {
+  --button-texture: url("./assets/button_disabled.png");
   color: #a0a0a0;
   background-color: #333;
-  border-image-source: url("./assets/button_disabled.png");
   box-shadow: none;
   cursor: wait;
 }
@@ -428,6 +462,13 @@ output {
     min-height: 60px;
     border-width: 6px 6px 9px;
     border-image-width: 6px 6px 9px 6px;
+  }
+
+  .option-button::after,
+  .toggle-value::after,
+  #generate::after,
+  .minecraft-button::after {
+    inset: -3px -3px -6px;
   }
 
   .cycle-setting,

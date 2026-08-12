@@ -15,6 +15,8 @@ const ORIGIN_Z_INPUT = document.querySelector("#origin-z");
 const OVERWORLD_GENERATOR_INPUT = document.querySelector(
   "#overworld-generator",
 );
+const OVERWORLD_GENERATOR_LABEL = OVERWORLD_GENERATOR_INPUT.querySelector("span");
+const DOWNLOAD_LABEL = DOWNLOAD.querySelector("span");
 const CARVE_INPUT = document.querySelector("#carve");
 const FILL_NETHER_INPUT = document.querySelector("#fill-nether");
 const ADD_BORDER_INPUT = document.querySelector("#add-border");
@@ -166,7 +168,7 @@ OVERWORLD_GENERATOR_INPUT.addEventListener("click", () => {
   const nextIndex = (currentIndex + 1) % OVERWORLD_GENERATORS.length;
   const nextGenerator = OVERWORLD_GENERATORS[nextIndex];
   OVERWORLD_GENERATOR_INPUT.value = nextGenerator.value;
-  OVERWORLD_GENERATOR_INPUT.textContent = nextGenerator.label;
+  OVERWORLD_GENERATOR_LABEL.textContent = nextGenerator.label;
 });
 
 BACK.addEventListener("click", () => location.reload());
@@ -236,7 +238,7 @@ FORM.addEventListener("submit", async (event) => {
     );
     DOWNLOAD.href = URL.createObjectURL(blob);
     DOWNLOAD.download = `${name.replaceAll(/[^a-z0-9._-]+/gi, "_") || "new_world"}.mcworld`;
-    DOWNLOAD.textContent = `Download ${DOWNLOAD.download}`;
+    DOWNLOAD_LABEL.textContent = `Download ${DOWNLOAD.download}`;
     DOWNLOAD.hidden = false;
     completed = true;
   } catch (error) {
