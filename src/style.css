@@ -376,6 +376,28 @@ output {
   background: #55ff55;
 }
 
+.attribution-footer {
+  position: fixed;
+  z-index: 10;
+  right: 10px;
+  bottom: 7px;
+  font-size: clamp(11px, 1.2vw, 15px);
+  line-height: 1;
+  text-align: right;
+}
+
+.attribution-footer a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #3f3f3f;
+}
+
+.attribution-footer a:hover,
+.attribution-footer a:focus-visible {
+  color: #ffff55;
+  text-shadow: 2px 2px 0 #3f3f00;
+}
+
 [hidden] {
   display: none !important;
 }
