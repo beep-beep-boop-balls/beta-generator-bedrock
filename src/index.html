@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#20140c" />
+    <title>Beta Generator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="world-screen">
+      <h1>Create New World</h1>
+
+      <form id="generator-form">
+        <div class="field">
+          <label for="world-name">World Name</label>
+          <input
+            id="world-name"
+            value="New World"
+            autocomplete="off"
+            required
+          />
+          <small>Will be downloaded after generation</small>
+        </div>
+
+        <div class="field">
+          <label for="seed">Seed for the World Generator</label>
+          <input id="seed" />
+          <small>Leave blank or enter 0 for a random seed</small>
+        </div>
+
+        <div class="cycle-setting">
+          <label for="overworld-generator">World Type</label>
+          <button
+            id="overworld-generator"
+            class="option-button"
+            type="button"
+            value="overworld"
+          >
+            Type: Overworld
+          </button>
+        </div>
+
+        <fieldset class="origin-fields">
+          <legend>World Origin</legend>
+          <label for="origin-x">
+            <span>X</span>
+            <input id="origin-x" type="number" value="0" step="16" required />
+          </label>
+          <label for="origin-z">
+            <span>Z</span>
+            <input id="origin-z" type="number" value="0" step="16" required />
+          </label>
+        </fieldset>
+
+        <div class="field compact-field">
+          <label for="radius">Block radius</label>
+          <input
+            id="radius"
+            type="number"
+            value="128"
+            min="0"
+            step="1"
+            required
+          />
+          <small><output id="rounded-range"></output></small>
+        </div>
+
+        <div class="field compact-field">
+          <label for="nether-radius">Nether block radius</label>
+          <input
+            id="nether-radius"
+            type="number"
+            value="128"
+            min="0"
+            step="1"
+            required
+          />
+          <small><output id="nether-rounded-range"></output></small>
+        </div>
+
+        <fieldset class="world-options">
+          <legend>World Options</legend>
+          <label class="toggle" for="decorate">
+            <span>Generate Features</span>
+            <input id="decorate" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="carve">
+            <span>Generate Caves</span>
+            <input id="carve" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="fill-nether">
+            <span>Generate Beta Nether</span>
+            <input id="fill-nether" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="add-border">
+            <span>Generate World Border</span>
+            <input id="add-border" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="add-nether-border">
+            <span>Generate Nether Border</span>
+            <input id="add-nether-border" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="map-origin">
+            <span>Map World Origin to 0, 0</span>
+            <input id="map-origin" type="checkbox" checked />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+          <label class="toggle" for="legacy-version">
+            <span>Force Pre-1.16 Behaviour</span>
+            <input id="legacy-version" type="checkbox" />
+            <span class="toggle-value" aria-hidden="true"></span>
+          </label>
+
+        </fieldset>
+
+        <button id="generate" type="submit">Create New World</button>
+      </form>
+
+      <p id="status" aria-live="polite"></p>
+    </main>
+
+    <main id="completion-screen" class="world-screen completion-screen" hidden>
+      <a id="download" class="minecraft-button" hidden>Download World</a>
+      <button id="back" class="minecraft-button" type="button">Back</button>
+    </main>
+
+    <div
+      id="loading-overlay"
+      class="loading-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loading-title"
+      aria-describedby="loading-message"
+      hidden
+    >
+      <div class="loading-content">
+        <p id="loading-title">Generating world</p>
+        <p id="loading-message" aria-live="polite">0/0 chunks</p>
+        <div
+          id="loading-progress"
+          class="loading-progress"
+          role="progressbar"
+          aria-label="World generation progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div id="loading-progress-fill" class="loading-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

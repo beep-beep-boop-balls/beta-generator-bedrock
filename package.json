@@ -1,0 +1,35 @@
+{
+  "name": "worldgen-web",
+  "version": "1.0.0",
+  "description": "Browser-based Minecraft Beta terrain generator and Bedrock .mcworld writer",
+  "exports": {
+    "./archive": "./src/integration/wasmArchive.js",
+    "./level.wasm": "./level/build/level.wasm",
+    "./worldgen.wasm": "./worldgen/build/worldgen.wasm"
+  },
+  "files": [
+    "level",
+    "worldgen",
+    "src",
+    "dist",
+    "vite.config.js",
+    "README.md"
+  ],
+  "scripts": {
+    "asbuild": "npm run asbuild:level && npm run asbuild:worldgen && npm run asbuild:app",
+    "asbuild:level": "asc level/assembly/index.ts --config asconfig.json --outFile level/build/level.wasm",
+    "asbuild:worldgen": "asc worldgen/assembly/index.ts --config asconfig.json --outFile worldgen/build/worldgen.wasm",
+    "asbuild:app": "asc src/assembly/index.ts --config asconfig.json --outFile src/build/app.wasm",
+    "build": "npm run asbuild:app && vite build",
+    "dev": "npm run asbuild:app && vite",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "assemblyscript": "^0.28.20",
+    "vite": "^8.2.1"
+  }
+}
