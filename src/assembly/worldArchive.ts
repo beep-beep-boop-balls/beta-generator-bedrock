@@ -172,7 +172,7 @@ function encodedState(canonical: i32): Uint8Array {
   else if (id == 56) result = blockState("diamond_ore"); else if (id == 73) result = blockState("redstone_ore");
   else if (id == 78) result = snowBlockState(state);
   else if (id == 79) result = blockState("ice"); else if (id == 81) result = blockState("cactus", "growth", "", 0, NBT_INT); else if (id == 82) result = blockState("clay"); else if (id == 83) result = blockState("reeds", "growth", "", 0, NBT_INT);
-  else if (id == 86) result = blockState("pumpkin", "minecraft:cardinal_direction", "south", 0, NBT_STRING);
+  else if (id == 86) result = blockState("carved_pumpkin", "minecraft:cardinal_direction", "south", 0, NBT_STRING);
   else if (id == 87) result = blockState("netherrack"); else if (id == 88) result = blockState("soul_sand"); else if (id == 89) result = blockState("glowstone");
   else result = blockState("air");
   STATE_CACHE.set(canonical, result);
